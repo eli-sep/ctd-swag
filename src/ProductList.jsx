@@ -1,8 +1,9 @@
 import ProductCard from './ProductCard';
 
-function ProductList({ inventory = [] }) {
+function ProductList({ inventory, children}) {
   return (
     <ul>
+        {children}{' '}
       {inventory.map((item) => {
         return (
           <ProductCard
