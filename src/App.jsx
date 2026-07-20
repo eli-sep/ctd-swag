@@ -1,22 +1,32 @@
+import { useState } from 'react';
 import ctdLogo from './assets/mono-blue-logo.svg';
 import './App.css';
-
-let message = 'Coming Soon...';
-
-setTimeout(() => {
-  message = 'We can feel it...';
-  console.log(`Updated message: ${message}`);
-}, 3000);
+import inventoryData from './assets/inventory.json';
 
 function App() {
+  const [inventory, setInventory] = useState(inventoryData.inventory);
+
   return (
-    <div className="coming-soon">
-      <h1>CTD Swag</h1>
-      <div style={{ height: 100, width: 100 }}>
-        <img src={ctdLogo} alt="Code The Dream Logo" />
+    <main>
+      <div className="coming-soon">
+        <h1>CTD Swag</h1>
+        <div style={{ height: 100, width: 100 }}>
+          <img src={ctdLogo} alt="Code The Dream Logo" />
+        </div>
       </div>
-      <h2>{message}</h2>
-    </div>
+      <ul>
+        {inventory.map((item) => {
+          return (
+            <li key={item.id}>
+              <div className="itemCard">
+                <h2>{item.baseName}</h2>
+                <p>{item.baseDescription}</p>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </main>
   );
 }
 
